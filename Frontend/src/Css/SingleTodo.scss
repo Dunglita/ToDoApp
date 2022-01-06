@@ -1,0 +1,165 @@
+//- Google Fonts
+$font-google-primary: "https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap";
+$font-google-secondary: "https://fonts.googleapis.com/css2?family=Montserrat&display=swap";
+
+//- @type List
+$abril-fatface: "Abril Fatface", cursive;
+$montserrat: "Montserrat", sans-serif;
+
+//- Typography
+$base-font-family: $montserrat;
+$heading-font-family: $abril-fatface;
+
+$font-size-small: 0.875em;
+
+/*- Screen Sizes*/
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+/* COLOR HEX */
+$cadet: #4f6d7aff;
+$maximum-blue: #5ea5b8ff;
+$columbia-blue: #c0d6dfff;
+$platinum: #eaeaeaff;
+$cultured: #f3f3f3ff;
+$nero: #444444;
+
+$body-background-color: $platinum;
+$body-text-color: $nero;
+
+//- Global Functions
+/*import fonts*/
+@if variable-exists(font-google-primary) {
+  @import url($font-google-primary);
+}
+@if variable-exists(font-google-secondary) {
+  @import url($font-google-secondary);
+}
+
+//- Global Mixins
+
+/*media queries*/
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: $body-background-color;
+  font-family: $base-font-family;
+  font-size: $font-size-small;
+  color: $body-text-color;
+  line-height: 1.5;
+}
+/* LIST */
+.cont1 {
+  counter-reset: count;
+  padding-left: 4vw; //default is smartphone
+  margin: 0px;
+  @include tablet-up {
+    padding-left: 2vw;
+  }
+  @include desktop {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+  }
+}
+
+.cont2 {
+  counter-increment: count;
+  color: $cadet;
+  font-family: $base-font-family;
+  font-size: 4vw;
+  text-transform: uppercase;
+  margin-right: 80px;
+}
+.cont2::before {
+  content: counter(count, decimal-leading-zero) ".";
+  font-family: $heading-font-family;
+  color: $maximum-blue;
+  margin-left: -1vw;
+  padding-right: 12px;
+}
+.cont3 {
+  margin-left: 5vw;
+  margin-bottom: 2vh;
+}
+
+.singleTodo-row {
+  height: 150px;
+  display: flex;
+  flex-direction: row;
+}
+.singleTodo-main {
+  width: 50%;
+  height: 100%;
+}
+.singleTodo-inliner {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+.checkbox-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.checkTodo {
+  background-color: aqua;
+  width: 40px;
+  height: 40px;
+}
+
+.singleTodo-actions {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  align-items: center;
+}
+
+.singleTodo-inline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.singleTodo-button {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  margin-left: 10%;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.09);
+}
+
+.singleTodo-button:hover {
+  background-color: rgba(255, 255, 255, 0.719);
+}
+
+.singleTodo-button > i {
+  color: $cadet;
+}
